@@ -8,12 +8,11 @@ import NotFound from './NotFound';
 import BuyerLogin from './../buyer/BuyerLogin';
 import BuyerRegistration from './../buyer/BuyerRegistration';
 import FarmerLogin from './../farmer/FarmerLogin';
-// import logo from '../assets/logo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './style.css';
-import Menu from './Menu';
+/*import Menu from './Menu'; */
    
 export default function MainNavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
