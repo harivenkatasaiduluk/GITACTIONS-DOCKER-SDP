@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
-import config from '../config';
 import { Link } from 'react-router-dom';
 import './buyer.css';
 
 export default function BuyerRegistration() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     name: '', 
     gender: '', 
@@ -26,7 +26,7 @@ export default function BuyerRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${config.url}/buyer/registration`, formData);
+      const response = await axios.post(`${apiUrl}/buyer/registration`, formData);
       if (response.status === 200) {
         setMessage(response.data);
         setFormData({

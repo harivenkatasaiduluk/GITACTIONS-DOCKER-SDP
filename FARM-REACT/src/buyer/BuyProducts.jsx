@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaStar, FaLeaf, FaTruck, FaUndo, FaShieldAlt } from 'react-icons/fa';
 import axios from 'axios';
-import config from '../config';
 import './buyercss/buyproducts.css';
 
 const BuyProducts = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const BuyProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${config.url}/product/viewallproducts`);
+        const response = await axios.get(`${apiUrl}/product/viewallproducts`);
         // Add some mock data for rating and discount to make it look like e-commerce
         const enhancedProducts = response.data.map(product => ({
           ...product,
@@ -24,7 +24,7 @@ const BuyProducts = () => {
           originalPrice: Math.round(product.cost * (1 + Math.random() * 0.3)), // Add original price for discount display
           discount: Math.round(Math.random() * 20), // Random discount between 0-20%
           isOrganic: Math.random() > 0.7, // 30% chance of being organic
-          imageUrl: `${config.url}/product/displayproductimage?id=${product.id}`
+          imageUrl: `${apiUrl}/product/displayproductimage?id=${product.id}`
         }));
         setProducts(enhancedProducts);
         setError(null);
@@ -37,7 +37,7 @@ const BuyProducts = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [apiUrl]);
 
   const handleAddToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];

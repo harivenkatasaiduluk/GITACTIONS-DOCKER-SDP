@@ -16,7 +16,6 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
-import config from '../config';
 
 // Register ChartJS components
 ChartJS.register(
@@ -32,6 +31,7 @@ ChartJS.register(
 );
 
 export default function ReportsAndAnalytics() {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [stats, setStats] = useState(() => {
         const savedStats = sessionStorage.getItem('reportsStats');
         return savedStats ? JSON.parse(savedStats) : {
@@ -69,7 +69,7 @@ export default function ReportsAndAnalytics() {
             let farmersData = [], buyersData = [], productsData = [], ordersData = [];
 
             try {
-                const farmersResponse = await axios.get(`${config.url}/admin/viewallfarmers`);
+                const farmersResponse = await axios.get(`${apiUrl}/admin/viewallfarmers`);
                 farmersData = farmersResponse.data;
             } catch (err) {
                 console.error('Error fetching farmers:', err);
@@ -77,7 +77,7 @@ export default function ReportsAndAnalytics() {
             }
 
             try {
-                const buyersResponse = await axios.get(`${config.url}/admin/viewallbuyers`);
+                const buyersResponse = await axios.get(`${apiUrl}/admin/viewallbuyers`);
                 buyersData = buyersResponse.data;
             } catch (err) {
                 console.error('Error fetching buyers:', err);
@@ -85,7 +85,7 @@ export default function ReportsAndAnalytics() {
             }
 
             try {
-                const productsResponse = await axios.get(`${config.url}/admin/manageproducts`);
+                const productsResponse = await axios.get(`${apiUrl}/admin/manageproducts`);
                 productsData = productsResponse.data;
             } catch (err) {
                 console.error('Error fetching products:', err);
@@ -97,7 +97,7 @@ export default function ReportsAndAnalytics() {
                 const allOrders = [];
                 for (const farmer of farmersData) {
                     try {
-                        const response = await axios.get(`${config.url}/farmer/${farmer.id}/orders`);
+                        const response = await axios.get(`${apiUrl}/farmer/${farmer.id}/orders`);
                         if (response.data && Array.isArray(response.data)) {
                             allOrders.push(...response.data);
                         }

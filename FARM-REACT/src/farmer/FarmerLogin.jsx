@@ -1,12 +1,12 @@
 import { useState } from "react";
-import "./farmer.css"; // Ensure this path is correct
+import "./farmer.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import config from "../config";
 import { useAuth } from "../contextapi/AuthContext";
 import { Link } from "react-router-dom";
 
 export default function FarmerLogin() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -26,12 +26,12 @@ export default function FarmerLogin() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${config.url}/farmer/checkfarmerlogin`,
+        `${apiUrl}/farmer/checkfarmerlogin`,
         formData
       );
       if (response.status === 200) {
         setIsFarmerLoggedIn(true);
-        sessionStorage.setItem('farmer', JSON.stringify(response.data)); // Store farmer data in sessionStorage
+        sessionStorage.setItem('farmer', JSON.stringify(response.data));
         navigate("/farmerhome");
       } else {
         setMessage(response.data);

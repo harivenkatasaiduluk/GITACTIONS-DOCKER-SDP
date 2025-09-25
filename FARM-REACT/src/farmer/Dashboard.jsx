@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import config from '../config';
 
 export default function Dashboard() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [productCount, setProductCount] = useState(0);
 
   useEffect(() => {
     const fetchProductCount = async () => {
       try {
-        
         const email = sessionStorage.getItem("farmer");
 
-        const res = await axios.get(`${config.url}/farmer/productcount`, {
-          params: { email }   
+        const res = await axios.get(`${apiUrl}/farmer/productcount`, {
+          params: { email }  
         });
  
-        setProductCount(res.data);   
+        setProductCount(res.data);  
       } catch (error) {
         console.error("Error fetching product count:", error);
       }
     };
 
-    
     fetchProductCount();
-  }, []); 
+  }, [apiUrl]);
 
   return (
     <div style={{ textAlign: 'center', padding: '30px', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>

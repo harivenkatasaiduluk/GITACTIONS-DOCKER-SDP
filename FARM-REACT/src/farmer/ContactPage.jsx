@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import config from "../config";
 import {
     Container,
     Paper,
@@ -27,6 +26,7 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import "./farmer.css";
 
 export default function ContactPage() {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
@@ -51,7 +51,7 @@ export default function ContactPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${config.url}/farmer/registration-request`, formData);
+            const response = await axios.post(`${apiUrl}/farmer/registration-request`, formData);
             setSnackbar({
                 open: true,
                 message: "Registration request submitted successfully! Admin will contact you soon.",
@@ -302,4 +302,4 @@ export default function ContactPage() {
             </Snackbar>
         </div>
     );
-} 
+}

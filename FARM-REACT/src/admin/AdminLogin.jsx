@@ -2,12 +2,12 @@ import { useState } from "react";
 import "./admin.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import config from "../config";
 import { useAuth } from "../contextapi/AuthContext";
 import image from "../assets/main.png";
 import { Link } from "react-router-dom";
 
 export default function AdminLogin() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -24,7 +24,7 @@ export default function AdminLogin() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${config.url}/admin/checkadminlogin`,
+        `${apiUrl}/admin/checkadminlogin`,
         formData
       );
       if (response.status === 200) {

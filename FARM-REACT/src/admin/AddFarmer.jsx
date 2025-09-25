@@ -1,76 +1,63 @@
 import { useState } from 'react';
 import axios from 'axios';
-import config from '../config'
 import './addfarmer.css';
-export default function AddFarmer() 
-{
+
+export default function AddFarmer() {
+  const apiUrl = import.meta.env.VITE_API_URL; // Get URL from .env file
+
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
     dob: '',
     email: '',
-    username:'',
+    username: '',
     password: '',
     mobileno: '',
-   
   });
 
-  //message state variable
   const [message, setMessage] = useState('');
-  //error state variable
   const [error, setError] = useState('');
 
-  const handleChange = (e) => 
-  {
-    setFormData({...formData, [e.target.id]: e.target.value});
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e) => 
-  {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try
-    {
-        const response = await axios.post(`${config.url}/admin/addfarmer`, formData);
-        if (response.status === 200) // if succcessfully added
-        {
-            setMessage(response.data);
-            setFormData({
-              name: '',
-              gender: '',
-              dob: '',
-              email: '',
-              username:'',
-              password: '',
-              mobileno: '',
-             
-               
-            });
-        }
-    } 
-    catch (error) 
-    {
-      if(error.response) 
-      {
-        setMessage("")
-        setError(error.response.data);
+    try {
+      const response = await axios.post(`${apiUrl}/admin/addfarmer`, formData);
+      if (response.status === 200) {
+        setMessage(response.data);
+        setFormData({
+          name: '',
+          gender: '',
+          dob: '',
+          email: '',
+          username: '',
+          password: '',
+          mobileno: '',
+        });
       }
-      else 
-      {
-        setMessage("")
-        setError("An unexpected error occurred.");
+    } catch (error) {
+      if (error.response) {
+        setMessage('');
+        setError(error.response.data);
+      } else {
+        setMessage('');
+        setError('An unexpected error occurred.');
       }
     }
   };
-  
+
   return (
     <div>
-      <h3 style={{ textAlign: "center",textDecoration: "underline"}}>Add Farmer</h3>
-      {
-            message?
-            <p style={{textAlign: "center",color:"green",fontWeight:"bolder"}}>{message}</p>:
-            <p style={{textAlign: "center",color:"red",fontWeight:"bolder"}}>{error}</p>
-      }
+      <h3 style={{ textAlign: 'center', textDecoration: 'underline' }}>Add Farmer</h3>
+      {message ? (
+        <p style={{ textAlign: 'center', color: 'green', fontWeight: 'bolder' }}>{message}</p>
+      ) : (
+        <p style={{ textAlign: 'center', color: 'red', fontWeight: 'bolder' }}>{error}</p>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Full Name</label>
@@ -105,7 +92,7 @@ export default function AddFarmer()
           <label>Mobile No</label>
           <input type="number" id="mobileno" value={formData.mobileno} onChange={handleChange} required />
         </div>
-      
+
         <button type="submit">Add</button>
       </form>
     </div>

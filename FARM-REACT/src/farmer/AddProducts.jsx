@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import config from '../config';
 import './farmercss/addproducts.css';
 
 const AddProducts = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     category: '',
@@ -49,7 +49,7 @@ const AddProducts = () => {
         formDataToSend.append(key, formData[key]);
       });
 
-      const response = await axios.post(`${config.url}/product/addproduct`, formDataToSend, {
+      const response = await axios.post(`${apiUrl}/product/addproduct`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

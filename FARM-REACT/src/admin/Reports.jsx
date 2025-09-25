@@ -3,9 +3,10 @@ import axios from 'axios';
 import { FaUsers, FaBox, FaShoppingCart, FaChartLine, FaChartPie, FaStar, FaUserTie } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import config from '../config';
 
 export default function Reports() {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    
     const [stats, setStats] = useState({
         totalFarmers: 0,
         totalBuyers: 0,
@@ -26,22 +27,22 @@ export default function Reports() {
             setError(null);
 
             // Fetch farmers
-            const farmersResponse = await axios.get(`${config.url}/admin/viewallfarmers`);
+            const farmersResponse = await axios.get(`${apiUrl}/admin/viewallfarmers`);
             console.log('Farmers response:', farmersResponse.data);
             const farmers = farmersResponse.data;
 
             // Fetch buyers
-            const buyersResponse = await axios.get(`${config.url}/admin/viewallbuyers`);
+            const buyersResponse = await axios.get(`${apiUrl}/admin/viewallbuyers`);
             console.log('Buyers response:', buyersResponse.data);
             const buyers = buyersResponse.data;
 
             // Fetch products
-            const productsResponse = await axios.get(`${config.url}/admin/viewallproducts`);
+            const productsResponse = await axios.get(`${apiUrl}/admin/viewallproducts`);
             console.log('Products response:', productsResponse.data);
             const products = productsResponse.data;
 
             // Fetch orders
-            const ordersResponse = await axios.get(`${config.url}/admin/viewallorders`);
+            const ordersResponse = await axios.get(`${apiUrl}/admin/viewallorders`);
             console.log('Orders response:', ordersResponse.data);
             const orders = ordersResponse.data;
 
@@ -213,4 +214,4 @@ export default function Reports() {
             </div>
         </div>
     );
-} 
+}

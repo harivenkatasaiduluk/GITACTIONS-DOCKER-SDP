@@ -2,10 +2,10 @@ import { useState } from 'react';
 import './buyer.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import config from '../config';
 import { useAuth } from '../contextapi/AuthContext';
 
 export default function BuyerLogin() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -25,7 +25,7 @@ export default function BuyerLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${config.url}/buyer/checkbuyerlogin`, formData);
+      const response = await axios.post(`${apiUrl}/buyer/checkbuyerlogin`, formData);
 
       if (response.status === 200) {
         setIsBuyerLoggedIn(true);

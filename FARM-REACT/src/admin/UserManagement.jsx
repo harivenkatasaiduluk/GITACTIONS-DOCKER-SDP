@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import config from '../config';
 import './admincss/usermanagement.css';
 
 const UserManagement = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ const UserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`${config.url}/admin/users/${userType}`);
+      const response = await axios.get(`${apiUrl}/admin/users/${userType}`);
       setUsers(response.data);
       setLoading(false);
     } catch (err) {
@@ -28,7 +28,7 @@ const UserManagement = () => {
 
   const handleStatusToggle = async (userId, currentStatus) => {
     try {
-      await axios.put(`${config.url}/admin/users/${userId}/status`, {
+      await axios.put(`${apiUrl}/admin/users/${userId}/status`, {
         status: currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
       });
       fetchUsers(); // Refresh the list
@@ -135,4 +135,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement; 
+export default UserManagement;

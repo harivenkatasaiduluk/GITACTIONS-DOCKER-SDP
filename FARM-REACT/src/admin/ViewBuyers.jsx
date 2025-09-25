@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import config from "../config";
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ViewBuyers() {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [buyers, setBuyers] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ export default function ViewBuyers() {
     const displayBuyers = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${config.url}/admin/viewallbuyers`);
+            const response = await axios.get(`${apiUrl}/admin/viewallbuyers`);
             setBuyers(response.data);
         } catch (err) {
             setError("Failed to fetch buyers data ... " + err.message);
@@ -27,7 +27,7 @@ export default function ViewBuyers() {
 
     const deleteBuyer = async (bid) => {
         try {
-            const response = await axios.delete(`${config.url}/admin/deletebuyer?bid=${bid}`);
+            const response = await axios.delete(`${apiUrl}/admin/deletebuyer?bid=${bid}`);
             alert(response.data);
             displayBuyers();
         } catch (err) {

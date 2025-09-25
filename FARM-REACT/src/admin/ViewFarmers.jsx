@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import config from "../config";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ViewFarmers() {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [farmers, setFarmers] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export default function ViewFarmers() {
     const displayFarmers = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${config.url}/admin/viewallfarmers`);
+            const response = await axios.get(`${apiUrl}/admin/viewallfarmers`);
             setFarmers(response.data);
         } catch (err) {
             setError("Failed to fetch farmers data ... " + err.message);
@@ -29,7 +29,7 @@ export default function ViewFarmers() {
 
     const deleteFarmer = async (fid) => {
         try {
-            const response = await axios.delete(`${config.url}/admin/deletefarmer?fid=${fid}`);
+            const response = await axios.delete(`${apiUrl}/admin/deletefarmer?fid=${fid}`);
             toast.success(response.data);
             displayFarmers();
         } catch (err) {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import config from '../config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../admin/admincss/product.css';
 
 const ManageProducts = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const ManageProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`${config.url}/product/viewallproducts`);
+      const res = await axios.get(`${apiUrl}/product/viewallproducts`);
       setProducts(res.data);
     } catch (err) {
       toast.error('Error loading products');
@@ -23,7 +24,7 @@ const ManageProducts = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${config.url}/admin/deleteproduct?pid=${id}`);
+      await axios.delete(`${apiUrl}/admin/deleteproduct?pid=${id}`);
       setProducts(prev => prev.filter(p => p.id !== id));
       toast.success('Product deleted successfully');
     } catch (err) {
@@ -71,7 +72,7 @@ const ManageProducts = () => {
               <tr key={p.id}>
                 <td>
                   <img
-                    src={`${config.url}/product/displayproductimage?id=${p.id}`}
+                    src={`${apiUrl}/product/displayproductimage?id=${p.id}`}
                     alt={p.name}
                     className="product-image"
                   />
