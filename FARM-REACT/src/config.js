@@ -1,6 +1,8 @@
-const config = 
-{
-    "url":"http://localhost:2080"
-}
+// src/api.js
+import axios from "axios";
 
-export default config
+const config = axios.create({
+  baseURL: import.meta.env.VITE_API_URL, // automatically picks from .env
+});
+
+export default config;
