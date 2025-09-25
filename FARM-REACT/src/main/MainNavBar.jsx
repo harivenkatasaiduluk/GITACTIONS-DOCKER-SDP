@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './style.css';
-import Menu from './menu';
+import Menu from './Menu';
    
 export default function MainNavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
