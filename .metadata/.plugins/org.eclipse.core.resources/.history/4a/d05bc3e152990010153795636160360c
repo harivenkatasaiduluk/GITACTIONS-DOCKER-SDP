@@ -1,0 +1,81 @@
+package com.klef.cicd.sdp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.klef.fsd.sdp.model.Buyer;
+import com.klef.fsd.sdp.service.BuyerService;
+
+@RestController
+@RequestMapping("/buyer")
+@CrossOrigin("*")  
+public class BuyerController 
+{
+   @Autowired
+   private BuyerService buyerService;
+ 
+   @GetMapping("/")
+   public String home()
+   {
+    return "Farmer-Friendly Web App";
+   }
+   
+   @PostMapping("/registration")
+   public ResponseEntity<String> buyerRegistration(@RequestBody Buyer buyer)
+   {
+    try
+    {
+    String output = buyerService.buyerRegistration(buyer);
+    return ResponseEntity.ok(output); // 200 - success
+    }
+    catch(Exception e)
+    {
+     return ResponseEntity.status(500).body("Buyer Registration failed");
+    }
+   }
+   
+   @PostMapping("/checkbuyerlogin")
+   public ResponseEntity<?> checkBuyerLogin(@RequestBody Buyer buyer) 
+   {
+       try 
+       {
+           Buyer b = buyerService.checkBuyerLogin(buyer.getUsername(), buyer.getPassword());
+
+           if (b!=null) 
+           {
+               return ResponseEntity.ok(b); // if login is successful
+           } 
+           else 
+           {
+               return ResponseEntity.status(401).body("Invalid Username or Password"); // if login fails
+           }
+       } 
+       catch (Exception e) 
+       {
+           return ResponseEntity.status(500).body("Login failed: " + e.getMessage());
+       }
+   }
+   @PutMapping("/updateprofile")
+   public ResponseEntity<String> customerupdateprofile(@RequestBody Buyer customer)
+   {
+       try
+       {
+           System.out.println(customer.toString());
+           String output = buyerService.buyerupdateprofile(customer); // fixed
+           return ResponseEntity.ok(output);
+       }
+       catch(Exception e)
+       {
+           System.out.println(e.getMessage());
+           return ResponseEntity.status(500).body("Failed to Update Customer ... !!"); 
+       }
+   }
+
+}

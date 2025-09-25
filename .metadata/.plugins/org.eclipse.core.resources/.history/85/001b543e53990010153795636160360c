@@ -1,0 +1,50 @@
+package com.klef.cicd.sdp.dto;
+
+package com.klef.fsd.sdp.dto;
+
+public class ProductDTO {
+    private int id;
+    private String category;
+    private String name;
+    private String title;
+    private String description;
+    private double cost;
+    private int quantity;
+
+    // Farmer details
+    private int farmerId;
+    private String farmerUsername;
+    private String farmerGmail;
+
+    // Getters and Setters
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public double getCost() { return cost; }
+    public void setCost(double cost) { this.cost = cost; }
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public int getFarmerId() { return farmerId; }
+    public void setFarmerId(int farmerId) { this.farmerId = farmerId; }
+
+    public String getFarmerUsername() { return farmerUsername; }
+    public void setFarmerUsername(String farmerUsername) { this.farmerUsername = farmerUsername; }
+
+    public String getFarmerGmail() { return farmerGmail; }
+    public void setFarmerGmail(String farmerGmail) { this.farmerGmail = farmerGmail; }
+}

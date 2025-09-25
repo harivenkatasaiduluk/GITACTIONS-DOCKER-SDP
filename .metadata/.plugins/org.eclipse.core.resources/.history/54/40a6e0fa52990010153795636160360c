@@ -1,0 +1,65 @@
+package com.klef.cicd.sdp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.klef.fsd.sdp.model.Farmer;
+import com.klef.fsd.sdp.service.FarmerService;
+
+@RestController
+@RequestMapping("/farmer")
+@CrossOrigin("*")
+public class FarmerController 
+{
+    @Autowired
+    private FarmerService farmerService;
+
+    @PostMapping("/checkfarmerlogin")
+    public ResponseEntity<?> checkFarmerLogin(@RequestBody Farmer farmer) {
+        try {
+            Farmer f = farmerService.checkFarmerLogin(farmer.getUsername(), farmer.getPassword());
+            if (f != null) {
+                return ResponseEntity.ok(f);
+            } else {
+                return ResponseEntity.status(401).body("Invalid Username or Password");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Login failed: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/profile/{fid}")
+    public ResponseEntity<?> getFarmerProfile(@PathVariable Integer fid) {
+        try {
+            Farmer f = farmerService.getFarmerById(fid);
+            if (f != null) {
+                return ResponseEntity.ok(f);
+            } else {
+                return ResponseEntity.status(404).body("Farmer not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error retrieving profile");
+        }
+        
+    }
+
+    @GetMapping("/productcount")
+    public ResponseEntity<Long> getProductCount()
+    {
+        long count = farmerService.displayproductcount();
+        return ResponseEntity.ok(count);
+    }
+    
+//    @GetMapping("/productcount")
+//    public ResponseEntity<Long> getProductCount(@RequestParam String email) {
+//        try {
+//            long count = farmerService.displayProductCountByEmail(email);  // Pass email to service layer
+//            return ResponseEntity.ok(count);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body(0L);  // Return 0 or appropriate response in case of failure
+//        }
+//    }
+
+    
+}

@@ -1,0 +1,55 @@
+0:03:01 Microsoft.UnloadController.TabStripEmpty
+0:03:01 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+0:03:01 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:03:01 Microsoft.Shutdown.OnWindowClosing
+0:03:01 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+0:03:01 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:03:01 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+0:03:01 Widget Closed: BrowserFrame
+0:03:01 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:03:01 Microsoft.Shutdown.OnWindowClosing
+0:03:01 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
+0:03:01 Microsoft.Browser_Removed
+0:03:01 Tab3 FinishNav4
+0:03:01 Tab3 PageLoad
+0:03:01 Tab3 StartNav5 #typed
+0:03:01 Tab3 FinishNav5
+0:03:01 Tab3 PageLoad
+0:03:01 Tab3 StartNav6 #typed
+0:03:02 Tab3 FinishNav6
+0:03:02 Tab3 PageLoad
+0:03:45 Memory Pressure: Moderate
+0:08:00 Memory Pressure: Moderate
+0:08:10 Memory Pressure: Moderate
+0:08:20 Memory Pressure: Moderate
+0:08:30 Memory Pressure: Moderate
+0:08:40 Memory Pressure: Moderate
+0:08:50 Memory Pressure: Moderate
+0:09:00 Memory Pressure: Moderate
+0:09:35 Memory Pressure: Moderate
+0:09:45 Memory Pressure: Moderate
+0:09:55 Memory Pressure: Moderate
+0:10:05 Memory Pressure: Moderate
+0:10:15 Memory Pressure: Moderate
+0:10:25 Memory Pressure: Moderate
+0:10:35 Memory Pressure: Moderate
+0:10:46 Memory Pressure: Moderate
+0:10:56 Memory Pressure: Moderate
+0:11:06 Memory Pressure: Moderate
+0:11:16 Memory Pressure: Moderate
+0:11:26 Memory Pressure: Moderate
+0:11:36 Memory Pressure: Moderate
+0:11:46 Memory Pressure: Moderate
+0:11:56 Memory Pressure: Moderate
+0:12:06 Memory Pressure: Moderate
+0:12:16 Memory Pressure: Moderate
+0:12:26 Memory Pressure: Moderate
+0:12:36 Memory Pressure: Moderate
+0:12:46 Memory Pressure: Moderate
+0:12:56 Memory Pressure: Moderate
+0:13:06 Memory Pressure: Moderate
+0:13:16 Memory Pressure: Moderate
+0:13:26 Memory Pressure: Moderate
+0:13:36 Memory Pressure: Moderate
+0:13:46 Memory Pressure: Moderate
+1:12:36 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp

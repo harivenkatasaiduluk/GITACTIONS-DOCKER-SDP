@@ -1,0 +1,43 @@
+package com.klef.cicd.sdp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.klef.fsd.sdp.model.Buyer;
+import com.klef.fsd.sdp.repository.BuyerRepository;
+
+@Service
+public class BuyerServiceImpl implements BuyerService {
+
+    @Autowired
+    private BuyerRepository buyerRepository;
+
+    @Override
+    public String buyerRegistration(Buyer buyer) {
+        buyerRepository.save(buyer);
+        return "Buyer Registered Successfully";
+    }
+
+    @Override
+    public Buyer checkBuyerLogin(String username, String password) {
+        return buyerRepository.findByUsernameAndPassword(username, password);
+    }
+    @Override
+    public String buyerupdateprofile(Buyer buyer) {
+        Buyer existingBuyer = buyerRepository.findById(buyer.getId()).orElse(null);
+        
+        if (existingBuyer != null) {
+            existingBuyer.setName(buyer.getName());
+            existingBuyer.setDob(buyer.getDob());
+            existingBuyer.setMobileno(buyer.getMobileno());
+            existingBuyer.setEmail(buyer.getEmail());
+            existingBuyer.setPassword(buyer.getPassword());
+            existingBuyer.setLocation(buyer.getLocation());
+            buyerRepository.save(existingBuyer);
+            return "Buyer Profile Updated Successfully";
+        } else {
+            return "Buyer ID Not Found to Update";
+        }
+    }
+
+}

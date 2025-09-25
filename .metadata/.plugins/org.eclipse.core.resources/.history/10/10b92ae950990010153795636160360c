@@ -1,0 +1,5 @@
+package com.klef.cicd.sdp.repository;
+
+public class AdminRepository {
+
+}

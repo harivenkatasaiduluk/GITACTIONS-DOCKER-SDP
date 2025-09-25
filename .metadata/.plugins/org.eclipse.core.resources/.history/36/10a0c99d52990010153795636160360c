@@ -1,0 +1,52 @@
+package com.klef.cicd.sdp.service;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.klef.cicd.sdp.model.Farmer;
+import com.klef.fsd.sdp.repository.FarmerRepository;
+import com.klef.fsd.sdp.repository.ProductRepository;
+
+@Service
+public class FarmerServiceImpl implements FarmerService {
+
+    @Autowired
+    private FarmerRepository farmerRepository;
+
+    @Autowired
+	private ProductRepository productRepository;
+    @Override
+    public Farmer checkFarmerLogin(String username, String password) {
+        return farmerRepository.findByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public Farmer getFarmerProfile(Integer farmerId) {
+        return farmerRepository.findById(farmerId).orElse(null);
+    }
+
+	 
+
+	@Override
+	public long displayproductcount() {
+		return productRepository.count();
+		
+	}
+
+	@Override
+	public Farmer getFarmerById(int fid) {
+		 return farmerRepository.findById(fid).get();
+//		 
+//	}
+//	public long displayProductCountByEmail(String email) {
+//	    // Assuming your Product entity has a reference to the Farmer (using email or a relation)
+//	    return productRepository.countByFarmerEmail(email);  // Query to count products by farmer's email
+//	}
+
+	 
+	
+ 
+	}
+    
+}

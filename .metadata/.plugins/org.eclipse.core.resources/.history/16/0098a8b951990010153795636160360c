@@ -1,0 +1,30 @@
+package com.klef.cicd.sdp.service;
+
+
+import java.util.List;
+import com.klef.cicd.sdp.model.Admin;
+import com.klef.fsd.sdp.model.Buyer;
+import com.klef.fsd.sdp.model.Farmer;
+
+public interface AdminService {
+
+  public Admin checkadminlogin(String username, String password);
+  
+  public String addFarmer(Farmer farmer);
+  public List<Farmer> displayFarmers();
+  
+  public List<Buyer> displayBuyers();
+  
+  public String deleteBuyer(int bid);
+  public String deleteFarmer(int fid);
+  public String deleteProduct(int pid);
+  
+  
+  public long displayBuyerCount();
+  public long displayFarmerCount();
+  public long displayProductCount();
+
+
+
+
+}

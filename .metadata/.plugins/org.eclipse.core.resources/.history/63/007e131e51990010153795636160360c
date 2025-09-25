@@ -1,0 +1,25 @@
+package com.klef.cicd.sdp.repository;
+
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.klef.fsd.sdp.model.Farmer;
+
+@Repository
+public interface FarmerRepository extends JpaRepository<Farmer, Integer> {
+
+    // Method to find a farmer by username and password
+	
+    public Farmer findByUsernameAndPassword(String username, String password);
+
+    // Custom query to count the total number of farmers
+    
+    @Query("select count(f) from Farmer f")
+    public long farmerCount();
+    
+//    @Query("SELECT COUNT(p) FROM Product p WHERE p.farmer.email = :email")
+//    long countByFarmerEmail(String email);
+}

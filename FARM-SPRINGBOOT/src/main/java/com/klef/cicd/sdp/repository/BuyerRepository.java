@@ -1,0 +1,29 @@
+package com.klef.cicd.sdp.repository;
+
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.klef.cicd.sdp.model.Buyer;
+
+@Repository
+public interface BuyerRepository extends JpaRepository<Buyer, Integer> 
+{
+    public Buyer findByUsernameAndPassword(String username, String password);
+    
+    @Query("select b from Buyer b where b.gender=?1")
+    public List<Buyer> displayBuyerByGender(String gender);
+    
+    @Modifying
+    @Transactional
+    @Query("delete from Buyer b where b.id=?1")
+    public int deleteBuyerByid(Integer Id);
+    
+    @Query("select count(b) from Buyer b")
+    public long buyerCount();
+}

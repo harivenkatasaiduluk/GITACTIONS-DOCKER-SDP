@@ -1,0 +1,5 @@
+package com.klef.cicd.sdp.controller;
+
+public class AdminController {
+
+}
